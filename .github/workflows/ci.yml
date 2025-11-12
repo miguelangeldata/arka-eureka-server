@@ -2,15 +2,9 @@ name: CI - Eureka Server
 
 on:
   push:
-    branches: [ "main"]
-    paths:
-      - 'eureka-server/**'
-      - '.github/workflows/ci-eureka.yml'
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-    paths:
-      - 'eureka-server/**'
-      - '.github/workflows/ci-eureka.yml'
 
 jobs:
   build:
