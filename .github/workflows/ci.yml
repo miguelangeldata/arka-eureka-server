@@ -26,10 +26,10 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build and test with Gradle
-        run: ./gradlew clean build --no-daemon -p eureka-server
+        run: ./gradlew clean build --no-daemon
 
       - name: Upload build artifacts (JAR)
         uses: actions/upload-artifact@v4
         with:
           name: eureka-server-jar
-          path: eureka-server/build/libs/*.jar
+          path: build/libs/*.jar

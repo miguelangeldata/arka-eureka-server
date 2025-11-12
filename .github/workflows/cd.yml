@@ -14,10 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
-    defaults:
-      run:
-        working-directory: eureka-server
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -33,7 +29,6 @@ jobs:
         run: |
           VERSION=$(grep "version = " build.gradle | cut -d"'" -f2)
           echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "Building image with version: $VERSION"
 
       - name: Build and Push Docker image
         run: |
@@ -43,5 +38,3 @@ jobs:
           docker build -t $IMAGE:$VERSION -t $IMAGE:latest .
           docker push $IMAGE:$VERSION
           docker push $IMAGE:latest
-          
-          echo "Pushed $IMAGE:$VERSION and $IMAGE:latest"
